@@ -16,22 +16,22 @@ const menuLinks = [
   {
     name: "Home",
     href: "/",
-    icon: <Gamepad2 className="w-5 h-5" />,
+    icon: <Gamepad2 className="h-5 w-5" />,
   },
   {
     name: "Shop",
     href: "/shop",
-    icon: <Store className="w-5 h-5" />,
+    icon: <Store className="h-5 w-5" />,
   },
   {
     name: "Help",
     href: "/help",
-    icon: <HelpCircle className="w-5 h-5" />,
+    icon: <HelpCircle className="h-5 w-5" />,
   },
 ];
 const TopNav = () => {
   return (
-    <div className="w-full h-8 lg:h-16">
+    <div className="h-8 w-full lg:h-16">
       {/* Desktop View */}
       <NavigationMenu className="hidden lg:flex">
         <NavigationMenuList>
@@ -40,7 +40,7 @@ const TopNav = () => {
               <Link href={link.href} legacyBehavior passHref>
                 <NavigationMenuLink
                   className={clsx(
-                    "flex flex-row gap-2 items-center",
+                    "flex flex-row items-center gap-2",
                     navigationMenuTriggerStyle(),
                   )}
                 >

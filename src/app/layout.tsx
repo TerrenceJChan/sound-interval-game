@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="theme-custom">
-      <body>
+      <body className="flex min-h-screen flex-col">
         <TopNav />
         {children}
       </body>
