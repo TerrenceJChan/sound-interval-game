@@ -18,10 +18,10 @@ export default function HamburgerMenu({ menuItems, className }: Props) {
     <div className={clsx("relative", className)}>
       <button
         onClick={toggleMenu}
-        className="z-50 fixed top-4 right-4 p-2 bg-primary text-primary-foreground rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-primary"
+        className="fixed right-4 top-4 z-50 rounded-full bg-primary p-2 text-primary-foreground shadow-lg focus:outline-none focus:ring-2 focus:ring-primary"
         aria-label={isOpen ? "Close menu" : "Open menu"}
       >
-        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
       <AnimatePresence>
         {isOpen && (
@@ -30,9 +30,9 @@ export default function HamburgerMenu({ menuItems, className }: Props) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed inset-y-0 right-0 w-64 bg-background shadow-lg z-40 flex flex-col"
+            className="fixed inset-y-0 right-0 z-40 flex w-64 flex-col bg-background shadow-lg"
           >
-            <nav className="flex flex-col space-y-4 p-4 mt-16">
+            <nav className="mt-16 flex flex-col space-y-4 p-4">
               {menuItems.map((item, index) => (
                 <MenuItem
                   key={index}
@@ -47,7 +47,7 @@ export default function HamburgerMenu({ menuItems, className }: Props) {
       </AnimatePresence>
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30"
+          className="fixed inset-0 z-30 bg-black bg-opacity-50"
           onClick={toggleMenu}
           aria-hidden="true"
         />
@@ -68,7 +68,7 @@ function MenuItem({
   return (
     <a
       href={href}
-      className="flex items-center space-x-2 text-foreground hover:bg-accent hover:text-accent-foreground rounded-md p-2 transition-colors"
+      className="flex items-center space-x-2 rounded-md p-2 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
     >
       {icon}
       <span>{text}</span>
