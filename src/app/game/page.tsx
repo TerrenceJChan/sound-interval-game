@@ -37,6 +37,8 @@ const Game = () => {
       (sound1?.reference ?? 0) - (sound2?.reference ?? 0),
     );
 
+    console.log(result);
+
     setAnimateOut(
       "animate-out duration-1000 transition-all ease-in-out fade-out",
     );
@@ -44,7 +46,7 @@ const Game = () => {
     setTimeout(() => {
       setShowMainContent(false);
       setTimeout(() => {
-        if ((inputValue ?? 0) - 1 === result) {
+        if ((inputValue ?? 0) === result) {
           setCorrect(true);
           setResultMessage(
             standardMessagesSuccess[
@@ -128,15 +130,15 @@ const Game = () => {
                 <input
                   onChange={(e) => setInputValue(parseInt(e.target.value))}
                   type="number"
-                  placeholder="1-12"
-                  min={1}
-                  max={12}
+                  placeholder="0-13"
+                  min={0}
+                  max={13}
                   className="w-1/2 rounded-xl px-4 py-2 text-primary"
                 />
                 <div>
                   {inputValue
                     ? intervals.find(
-                        (interval) => interval.difference === inputValue - 1,
+                        (interval) => interval.difference === inputValue,
                       )?.name
                     : ""}
                 </div>
@@ -145,6 +147,20 @@ const Game = () => {
               <Button onClick={handleSubmit} className="w-1/2 rounded-xl">
                 Submit
               </Button>
+
+              <div className="rounded-xl border-2 border-primary/50 p-4">
+                <div className="flex flex-col gap-2 p-2">
+                  {intervals.map((interval) => (
+                    <div
+                      key={interval.difference}
+                      className="flex items-center justify-between gap-x-6 text-xs opacity-50"
+                    >
+                      <div>{interval.name}</div>
+                      <div>{interval.difference}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </DelayedComponent>
         </div>

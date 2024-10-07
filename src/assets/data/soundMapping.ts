@@ -94,44 +94,44 @@ export const violinSounds = [
     sound: "/sounds/violin-ds5.mp3",
     reference: 18,
   },
-  {
-    note: "e5",
-    sound: "/sounds/violin-e5.mp3",
-    reference: 19,
-  },
-  {
-    note: "f5",
-    sound: "/sounds/violin-f5.mp3",
-    reference: 20,
-  },
-  {
-    note: "fs5",
-    sound: "/sounds/violin-fs5.mp3",
-    reference: 21,
-  },
-  {
-    note: "g5",
-    sound: "/sounds/violin-g5.mp3",
-    reference: 22,
-  },
-  {
-    note: "a5",
-    sound: "/sounds/violin-a5.mp3",
-    reference: 23,
-  },
-  {
-    note: "as5",
-    sound: "/sounds/violin-as5.mp3",
-    reference: 24,
-  },
-  {
-    note: "b5",
-    sound: "/sounds/violin-b5.mp3",
-    reference: 25,
-  },
-  {
-    note: "c6",
-    sound: "/sounds/violin-c6.mp3",
-    reference: 26,
-  },
+  // {
+  //   note: "e5",
+  //   sound: "/sounds/violin-e5.mp3",
+  //   reference: 19,
+  // },
+  // {
+  //   note: "f5",
+  //   sound: "/sounds/violin-f5.mp3",
+  //   reference: 20,
+  // },
+  // {
+  //   note: "fs5",
+  //   sound: "/sounds/violin-fs5.mp3",
+  //   reference: 21,
+  // },
+  // {
+  //   note: "g5",
+  //   sound: "/sounds/violin-g5.mp3",
+  //   reference: 22,
+  // },
+  // {
+  //   note: "a5",
+  //   sound: "/sounds/violin-a5.mp3",
+  //   reference: 23,
+  // },
+  // {
+  //   note: "as5",
+  //   sound: "/sounds/violin-as5.mp3",
+  //   reference: 24,
+  // },
+  // {
+  //   note: "b5",
+  //   sound: "/sounds/violin-b5.mp3",
+  //   reference: 25,
+  // },
+  // {
+  //   note: "c6",
+  //   sound: "/sounds/violin-c6.mp3",
+  //   reference: 26,
+  // },
 ];
