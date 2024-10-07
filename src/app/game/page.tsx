@@ -38,8 +38,6 @@ const Game = () => {
       (sound1?.reference ?? 0) - (sound2?.reference ?? 0),
     );
 
-    console.log(result);
-
     setAnimateOut(
       "animate-out duration-1000 transition-all ease-in-out fade-out",
     );
@@ -71,16 +69,8 @@ const Game = () => {
   useEffect(() => {
     if (!sound1 && !sound2) {
       const pickSounds = () => {
-        const randomIndex1 = Math.floor(
-          Math.random() * violinSounds.length - 1,
-        );
-        const randomIndex2 = Math.floor(
-          Math.random() * violinSounds.length - 1,
-        );
-
-        if (randomIndex1 === randomIndex2) {
-          return pickSounds();
-        }
+        const randomIndex1 = Math.floor(Math.random() * violinSounds.length);
+        const randomIndex2 = Math.floor(Math.random() * violinSounds.length);
 
         setSoundIndex1(violinSounds[randomIndex1]);
         setSoundIndex2(violinSounds[randomIndex2]);
@@ -184,6 +174,17 @@ const Game = () => {
             {correct ? "Correct!" : "Incorrect!"}
           </div>
           <div>{resultMessage}</div>
+          {sound1 && sound2 && (
+            <div className="flex flex-row gap-8 text-sm opacity-50">
+              <div>First Note: {sound1.note}</div>
+              <div>Second Note: {sound2.note}</div>
+              <div>
+                Interval:{" "}
+                {intervals[Math.abs(sound1.reference - sound2.reference)].name +
+                  ` (${Math.abs(sound1.reference - sound2.reference)} semitones)`}
+              </div>
+            </div>
+          )}
         </DelayedComponent>
       )}
     </div>
