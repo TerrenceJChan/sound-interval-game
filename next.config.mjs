@@ -4,6 +4,11 @@ const nextConfig = {
     // Enables the styled-components SWC transform
     styledComponents: true,
   },
+  output: "export",
+  basePath: "/sound-interval-game",
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
