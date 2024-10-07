@@ -32,7 +32,8 @@ const Game = () => {
   const sound1Ref = useRef<HTMLAudioElement>(null);
   const sound2Ref = useRef<HTMLAudioElement>(null);
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const result = Math.abs(
       (sound1?.reference ?? 0) - (sound2?.reference ?? 0),
     );
@@ -50,14 +51,14 @@ const Game = () => {
           setCorrect(true);
           setResultMessage(
             standardMessagesSuccess[
-              Math.floor(Math.random() * standardMessagesSuccess.length) - 1
+              Math.floor(Math.random() * standardMessagesSuccess.length)
             ].message,
           );
         } else {
           setCorrect(false);
           setResultMessage(
             standardMessagesFailure[
-              Math.floor(Math.random() * standardMessagesFailure.length) - 1
+              Math.floor(Math.random() * standardMessagesFailure.length)
             ].message,
           );
         }
@@ -124,7 +125,10 @@ const Game = () => {
           )}
 
           <DelayedComponent delay={10000}>
-            <div className="flex flex-col items-center gap-8 duration-500 animate-in fade-in">
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col items-center gap-8 duration-500 animate-in fade-in"
+            >
               <p>How many semitones were between the two notes?</p>
               <div className="flex w-full flex-col items-center gap-4">
                 <input
@@ -144,10 +148,7 @@ const Game = () => {
                 </div>
               </div>
 
-              <Button onClick={handleSubmit} className="w-1/2 rounded-xl">
-                Submit
-              </Button>
-
+              {/* Cheatsheet */}
               <div className="rounded-xl border-2 border-primary/50 p-4">
                 <div className="flex flex-col gap-2 p-2">
                   {intervals.map((interval) => (
@@ -161,7 +162,11 @@ const Game = () => {
                   ))}
                 </div>
               </div>
-            </div>
+
+              <Button type="submit" className="w-1/2 rounded-xl">
+                Submit
+              </Button>
+            </form>
           </DelayedComponent>
         </div>
       )}
