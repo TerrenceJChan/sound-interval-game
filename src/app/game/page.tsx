@@ -130,7 +130,7 @@ const Game = () => {
                   className="w-1/2 rounded-xl px-4 py-2 text-primary"
                 />
                 <div>
-                  {inputValue
+                  {inputValue !== null && inputValue !== undefined
                     ? intervals.find(
                         (interval) => interval.difference === inputValue,
                       )?.name
