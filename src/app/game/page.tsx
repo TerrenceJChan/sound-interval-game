@@ -55,6 +55,10 @@ const Game = () => {
               Math.floor(Math.random() * standardMessagesSuccess.length)
             ].message,
           );
+          localStorage.setItem(
+            "points",
+            ((Number(localStorage.getItem("points")) ?? 0) + 10).toString(),
+          );
         } else {
           setCorrect(false);
           setResultMessage(
