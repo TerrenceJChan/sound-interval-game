@@ -17,6 +17,8 @@ const Game = () => {
   const [correct, setCorrect] = useState<null | boolean>(null);
   const [resultMessage, setResultMessage] = useState("");
   const [animateOut, setAnimateOut] = useState("");
+  const [animateOutResults, setAnimateOutResults] =
+    useState("animate-in fade-in");
   const [sound1, setSoundIndex1] = useState<null | {
     note: string;
     sound: string;
@@ -31,6 +33,7 @@ const Game = () => {
 
   const sound1Ref = useRef<HTMLAudioElement>(null);
   const sound2Ref = useRef<HTMLAudioElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -63,6 +66,13 @@ const Game = () => {
 
         setShowResultMessage(true);
       }, 1000);
+    }, 1000);
+  };
+
+  const handleRestart = () => {
+    setAnimateOutResults("duration-1000 transition-all ease-in-out opacity-0");
+    setTimeout(() => {
+      window.location.reload();
     }, 1000);
   };
 
@@ -122,6 +132,7 @@ const Game = () => {
               <p>How many semitones were between the two notes?</p>
               <div className="flex w-full flex-col items-center gap-4">
                 <input
+                  ref={inputRef}
                   onChange={(e) => setInputValue(parseInt(e.target.value))}
                   type="number"
                   placeholder="0-13"
@@ -146,7 +157,18 @@ const Game = () => {
                       key={interval.difference}
                       className="flex items-center justify-between gap-x-6 text-xs opacity-50"
                     >
-                      <div>{interval.name}</div>
+                      <button
+                        className="underline"
+                        onClick={(event) => {
+                          if (inputRef.current) {
+                            event.preventDefault();
+                            inputRef.current.value =
+                              interval.difference.toString();
+                          }
+                        }}
+                      >
+                        {interval.name}
+                      </button>
                       <div>{interval.difference}</div>
                     </div>
                   ))}
@@ -163,7 +185,10 @@ const Game = () => {
       {showResultMessage && (
         <DelayedComponent
           delay={1000}
-          className="flex flex-col gap-4 duration-1000 animate-in fade-in"
+          className={clsx(
+            "flex flex-col gap-4 duration-1000",
+            animateOutResults,
+          )}
         >
           <div
             className={clsx(
@@ -185,6 +210,13 @@ const Game = () => {
               </div>
             </div>
           )}
+          <Button
+            onClick={handleRestart}
+            variant={"default"}
+            className="w-fit rounded-xl duration-1000 animate-in fade-in"
+          >
+            Play Again
+          </Button>
         </DelayedComponent>
       )}
     </div>
