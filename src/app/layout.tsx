@@ -1,11 +1,9 @@
-import TopNav from "@/components/TopNav";
-import type { Metadata } from "next";
-import "./globals.css";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Sound Interval Game",
-  description: "Hate yourself with negative reinforcement.",
-};
+import RecoilInitializer from "@/components/RecoilInitializer";
+import TopNav from "@/components/TopNav";
+import { RecoilRoot } from "recoil";
+import "./globals.css";
 
 export default function RootLayout({
   children,
@@ -14,10 +12,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="theme-custom">
-      <body className="flex min-h-screen flex-col">
-        <TopNav />
-        {children}
-      </body>
+      <RecoilRoot>
+        <RecoilInitializer />
+        <body className="flex min-h-screen flex-col">
+          <TopNav />
+          {children}
+        </body>
+      </RecoilRoot>
     </html>
   );
 }

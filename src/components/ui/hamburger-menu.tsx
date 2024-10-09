@@ -3,11 +3,13 @@
 import { clsx } from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
+import PointsDisplay from "../PointsDisplay";
 
 interface Props {
   menuItems: { name: string; href: string; icon: React.ReactNode }[];
-  className: string;
+  className?: string;
 }
 export default function HamburgerMenu({ menuItems, className }: Props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,14 +17,17 @@ export default function HamburgerMenu({ menuItems, className }: Props) {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <div className={clsx("relative", className)}>
-      <button
-        onClick={toggleMenu}
-        className="fixed right-4 top-4 z-50 rounded-full bg-primary p-2 text-primary-foreground shadow-lg focus:outline-none focus:ring-2 focus:ring-primary"
-        aria-label={isOpen ? "Close menu" : "Open menu"}
-      >
-        {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-      </button>
+    <div className={clsx("fixed top-4 w-full", className)}>
+      <div className="flex w-full items-center justify-between px-4">
+        <PointsDisplay />
+        <button
+          onClick={toggleMenu}
+          className="z-50 rounded-full bg-primary p-2 text-primary-foreground shadow-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+        >
+          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </div>
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -66,12 +71,12 @@ function MenuItem({
   href: string;
 }) {
   return (
-    <a
+    <Link
       href={href}
       className="flex items-center space-x-2 rounded-md p-2 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
     >
       {icon}
       <span>{text}</span>
-    </a>
+    </Link>
   );
 }

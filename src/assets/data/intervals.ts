@@ -3,7 +3,6 @@ export const intervals = [
     difference: 0,
     name: "Perfect Unison",
   },
-
   {
     difference: 1,
     name: "Minor 2nd",

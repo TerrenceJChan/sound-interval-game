@@ -1,7 +1,7 @@
 export const standardMessagesSuccess = [
   {
     id: 0,
-    message: "You are on fire1",
+    message: "You are on fire!",
   },
   { id: 1, message: "Absolutely nailed it" },
   { id: 2, message: "Light work 😤" },
