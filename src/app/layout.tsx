@@ -1,7 +1,8 @@
 "use client";
 
+import RecoilInitializer from "@/components/RecoilInitializer";
 import TopNav from "@/components/TopNav";
-import { useEffect } from "react";
+import { RecoilRoot } from "recoil";
 import "./globals.css";
 
 export default function RootLayout({
@@ -9,18 +10,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  useEffect(() => {
-    if (!localStorage.getItem("points")) {
-      localStorage.setItem("points", "0");
-    }
-  }, []);
-
   return (
     <html lang="en" className="theme-custom">
-      <body className="flex min-h-screen flex-col">
-        <TopNav />
-        {children}
-      </body>
+      <RecoilRoot>
+        <RecoilInitializer />
+        <body className="flex min-h-screen flex-col">
+          <TopNav />
+          {children}
+        </body>
+      </RecoilRoot>
     </html>
   );
 }

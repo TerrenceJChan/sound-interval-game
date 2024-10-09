@@ -10,7 +10,6 @@ import {
 import clsx from "clsx";
 import { Gamepad2, HelpCircle, Store } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 import PointsDisplay from "./PointsDisplay";
 import HamburgerMenu from "./ui/hamburger-menu";
 
@@ -32,8 +31,6 @@ const menuLinks = [
   },
 ];
 const TopNav = () => {
-  const [points, setPoints] = useState<null | number>(null);
-
   return (
     <div className="flex h-8 w-full items-center justify-between lg:h-16">
       {/* Desktop View */}
