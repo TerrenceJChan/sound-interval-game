@@ -5,6 +5,10 @@ export const shopSettingsState = atom({
   default: {
     difficulty: [
       {
+        name: "starter",
+        purchased: true,
+      },
+      {
         name: "beginner",
         purchased: false,
       },
@@ -18,6 +22,7 @@ export const shopSettingsState = atom({
       },
     ],
     instrument: [
+      { name: "violin", purchased: true },
       {
         name: "xylophone",
         purchased: false,

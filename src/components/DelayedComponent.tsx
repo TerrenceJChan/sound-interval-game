@@ -28,9 +28,7 @@ const DelayedComponent = ({
 
     if (removeDelay) {
       setTimeout(() => {
-        setExitAnimation(
-          "animate-out duration-1000 transition-all ease-in-out fade-out",
-        );
+        setExitAnimation("duration-1000 opacity-0 transition-all ease-in-out");
         setTimeout(() => {
           setShow(false);
         }, 1000);

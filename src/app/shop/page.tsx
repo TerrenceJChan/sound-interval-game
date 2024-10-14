@@ -56,7 +56,7 @@ const Shop = () => {
                       Advanced training that will expose all standard intervals.
                     </p>
                     <p className="font-medium">
-                      Allows intervals up to and including perfect eighths (10
+                      Allows intervals up to and including perfect eighths (13
                       semitones).
                     </p>
                   </div>
