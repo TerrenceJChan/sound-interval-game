@@ -43,6 +43,10 @@ const Game = () => {
     reference: number;
   }>(null);
 
+  useEffect(() => {
+    localStorage["settings"] = JSON.stringify(settings);
+  }, [settings]);
+
   const sound1Ref = useRef<HTMLAudioElement>(null);
   const sound2Ref = useRef<HTMLAudioElement>(null);
 
@@ -60,7 +64,7 @@ const Game = () => {
 
   const handleInstrumentChange = (setting: Instrument) => {
     if (
-      shopSettings.difficulty.find((difficulty) => difficulty.name === setting)
+      shopSettings.instrument.find((instrument) => instrument.name === setting)
         ?.purchased
     ) {
       setSettings({

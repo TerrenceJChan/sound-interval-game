@@ -193,7 +193,7 @@ const Shop = () => {
                       interval testing.
                     </p>
                     <p className="font-medium">
-                      Unlocks the flute during game setup.
+                      Unlocks the xylophone during game setup.
                     </p>
                   </div>
                 }
@@ -228,7 +228,7 @@ const Shop = () => {
                       interval testing.
                     </p>
                     <p className="font-medium">
-                      Unlocks the xylophone during game setup.
+                      Unlocks the flute during game setup.
                     </p>
                   </div>
                 }
