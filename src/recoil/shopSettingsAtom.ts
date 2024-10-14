@@ -20,7 +20,7 @@ export const shopSettingsState = atom({
         purchased: false,
       },
       {
-        name: "expert",
+        name: "advanced",
         price: 70,
         purchased: false,
       },

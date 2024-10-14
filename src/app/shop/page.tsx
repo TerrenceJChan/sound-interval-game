@@ -12,10 +12,7 @@ const Shop = () => {
   const [points, setPoints] = useRecoilState(pointsState);
   const [shopSettings, setShopSettings] = useRecoilState(shopSettingsState);
 
-  useEffect(() => {
-    localStorage["points"] = String(points);
-    localStorage["shopSettings"] = JSON.stringify(shopSettings);
-  }, [points, shopSettings]);
+  useEffect(() => {}, [points]);
 
   const handlePurchase = (
     item:
@@ -29,30 +26,39 @@ const Shop = () => {
     if (item === undefined) {
       return;
     }
-    if (!item.purchased && points >= item.price) {
-      setShopSettings({
-        ...shopSettings,
-        difficulty: shopSettings.difficulty.map((difficulty) => {
-          if (difficulty.name === item.name) {
-            return {
-              ...difficulty,
-              purchased: true,
-            };
-          }
-          return difficulty;
-        }),
-        instrument: shopSettings.instrument.map((instrument) => {
-          if (instrument.name === item.name) {
-            return {
-              ...instrument,
-              purchased: true,
-            };
-          }
-          return instrument;
-        }),
-      });
-      setPoints(points - item.price);
-    }
+    const updateShop = () => {
+      if (!item.purchased && points >= item.price) {
+        setShopSettings({
+          ...shopSettings,
+          difficulty: shopSettings.difficulty.map((difficulty) => {
+            if (difficulty.name === item.name) {
+              return {
+                ...difficulty,
+                purchased: true,
+              };
+            }
+            return difficulty;
+          }),
+          instrument: shopSettings.instrument.map((instrument) => {
+            if (instrument.name === item.name) {
+              return {
+                ...instrument,
+                purchased: true,
+              };
+            }
+            return instrument;
+          }),
+        });
+        setPoints(points - item.price);
+      }
+    };
+    const updateStorage = () => {
+      localStorage["shopSettings"] = JSON.stringify(shopSettings);
+      localStorage["points"] = String(points);
+    };
+
+    updateShop();
+    updateStorage();
   };
 
   return (
