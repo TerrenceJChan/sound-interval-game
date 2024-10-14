@@ -141,9 +141,7 @@ const Game = () => {
       const randomIndex1 = Math.floor(Math.random() * violinSounds.length);
       let randomIndex2: number;
       const semiRandomizer = () => {
-        const semiRandomIndex = Math.floor(
-          Math.random() * difficultyRange() + 1,
-        );
+        const semiRandomIndex = Math.floor(Math.random() * difficultyRange());
 
         if (semiRandomIndex + randomIndex1 > violinSounds.length) {
           randomIndex2 = Math.abs(semiRandomIndex - randomIndex1);
@@ -158,8 +156,6 @@ const Game = () => {
           setSoundIndex1(violinSounds[randomIndex2]);
           setSoundIndex2(violinSounds[randomIndex1]);
         }
-
-        console.log(randomIndex1, randomIndex2);
       };
 
       semiRandomizer();

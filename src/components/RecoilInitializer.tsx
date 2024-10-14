@@ -5,13 +5,13 @@ import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 
 const RecoilInitializer = () => {
-  const [, setPoints] = useRecoilState<number>(pointsState);
+  const [points, setPoints] = useRecoilState<number>(pointsState);
   const [settings, setSettings] = useRecoilState(settingsState);
   const [shopSettings, setShopSettings] = useRecoilState(shopSettingsState);
 
   useEffect(() => {
     if (!localStorage.getItem("points")) {
-      localStorage.setItem("points", "0");
+      localStorage.setItem("points", String(points));
     } else {
       setPoints(Number(localStorage.getItem("points")));
     }

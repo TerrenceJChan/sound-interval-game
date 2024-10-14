@@ -1,6 +1,60 @@
+"use client";
+
 import DescriptionTooltip from "@/components/DescriptionTooltip";
+import { Button } from "@/components/ui/button";
+import { pointsState } from "@/recoil/pointsAtom";
+import { shopSettingsState } from "@/recoil/shopSettingsAtom";
+import clsx from "clsx";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
 
 const Shop = () => {
+  const [points, setPoints] = useRecoilState(pointsState);
+  const [shopSettings, setShopSettings] = useRecoilState(shopSettingsState);
+
+  useEffect(() => {
+    localStorage["points"] = String(points);
+    localStorage["shopSettings"] = JSON.stringify(shopSettings);
+  }, [points, shopSettings]);
+
+  const handlePurchase = (
+    item:
+      | {
+          name: string;
+          price: number;
+          purchased: boolean;
+        }
+      | undefined,
+  ) => {
+    if (item === undefined) {
+      return;
+    }
+    if (!item.purchased && points >= item.price) {
+      setShopSettings({
+        ...shopSettings,
+        difficulty: shopSettings.difficulty.map((difficulty) => {
+          if (difficulty.name === item.name) {
+            return {
+              ...difficulty,
+              purchased: true,
+            };
+          }
+          return difficulty;
+        }),
+        instrument: shopSettings.instrument.map((instrument) => {
+          if (instrument.name === item.name) {
+            return {
+              ...instrument,
+              purchased: true,
+            };
+          }
+          return instrument;
+        }),
+      });
+      setPoints(points - item.price);
+    }
+  };
+
   return (
     <div className="flex w-full flex-grow flex-col">
       <h1 className="p-8 text-center text-3xl font-bold lg:text-5xl">Shop</h1>
@@ -24,10 +78,27 @@ const Shop = () => {
                   </div>
                 }
               >
-                <div className="flex flex-row justify-between gap-8 rounded-xl p-2 transition-all hover:bg-yellow-100/10">
+                <Button
+                  variant={"ghost"}
+                  onClick={() =>
+                    handlePurchase(
+                      shopSettings.difficulty.find(
+                        (difficulty) => difficulty.name === "beginner",
+                      ),
+                    )
+                  }
+                  className={clsx(
+                    "flex flex-row justify-between gap-8 rounded-xl p-2 underline decoration-dotted transition-all",
+                    shopSettings.difficulty.find(
+                      (difficulty) => difficulty.name === "beginner",
+                    )?.purchased === true
+                      ? "bg-green-800"
+                      : "hover:bg-yellow-100/10",
+                  )}
+                >
                   <div className="underline decoration-dotted">Beginner</div>
-                  <div>50 Points</div>
-                </div>
+                  <div>30 Points</div>
+                </Button>
               </DescriptionTooltip>
               <DescriptionTooltip
                 content={
@@ -42,12 +113,29 @@ const Shop = () => {
                   </div>
                 }
               >
-                <div className="flex flex-row justify-between gap-8 rounded-xl p-2 transition-all hover:bg-yellow-100/10">
+                <Button
+                  variant={"ghost"}
+                  onClick={() =>
+                    handlePurchase(
+                      shopSettings.difficulty.find(
+                        (difficulty) => difficulty.name === "intermediate",
+                      ),
+                    )
+                  }
+                  className={clsx(
+                    "flex flex-row justify-between gap-8 rounded-xl p-2 underline decoration-dotted transition-all",
+                    shopSettings.difficulty.find(
+                      (difficulty) => difficulty.name === "intermediate",
+                    )?.purchased === true
+                      ? "bg-green-800"
+                      : "hover:bg-yellow-100/10",
+                  )}
+                >
                   <div className="underline decoration-dotted">
                     Intermediate
                   </div>
-                  <div>200 Points</div>
-                </div>
+                  <div>50 Points</div>
+                </Button>
               </DescriptionTooltip>
               <DescriptionTooltip
                 content={
@@ -62,10 +150,27 @@ const Shop = () => {
                   </div>
                 }
               >
-                <div className="flex flex-row justify-between gap-8 rounded-xl p-2 transition-all hover:bg-yellow-100/10">
+                <Button
+                  variant={"ghost"}
+                  onClick={() =>
+                    handlePurchase(
+                      shopSettings.difficulty.find(
+                        (difficulty) => difficulty.name === "advanced",
+                      ),
+                    )
+                  }
+                  className={clsx(
+                    "flex flex-row justify-between gap-8 rounded-xl p-2 underline decoration-dotted transition-all",
+                    shopSettings.difficulty.find(
+                      (difficulty) => difficulty.name === "advanced",
+                    )?.purchased === true
+                      ? "bg-green-800"
+                      : "hover:bg-yellow-100/10",
+                  )}
+                >
                   <div className="underline decoration-dotted">Advanced</div>
-                  <div>500 Points</div>
-                </div>
+                  <div>70 Points</div>
+                </Button>
               </DescriptionTooltip>
             </div>
           </div>
@@ -87,10 +192,27 @@ const Shop = () => {
                   </div>
                 }
               >
-                <div className="flex flex-row justify-between gap-8 rounded-xl p-2 transition-all hover:bg-yellow-100/10">
-                  <div className="underline decoration-dotted">Flute</div>
-                  <div>500 Points</div>
-                </div>
+                <Button
+                  variant={"ghost"}
+                  onClick={() =>
+                    handlePurchase(
+                      shopSettings.instrument.find(
+                        (instrument) => instrument.name === "xylophone",
+                      ),
+                    )
+                  }
+                  className={clsx(
+                    "flex flex-row justify-between gap-8 rounded-xl p-2 underline decoration-dotted transition-all",
+                    shopSettings.instrument.find(
+                      (instrument) => instrument.name === "xylophone",
+                    )?.purchased === true
+                      ? "bg-green-800"
+                      : "hover:bg-yellow-100/10",
+                  )}
+                >
+                  <div className="underline decoration-dotted">Xylophone</div>
+                  <div>30 Points</div>
+                </Button>
               </DescriptionTooltip>
               <DescriptionTooltip
                 content={
@@ -105,10 +227,27 @@ const Shop = () => {
                   </div>
                 }
               >
-                <div className="flex flex-row justify-between gap-8 rounded-xl p-2 transition-all hover:bg-yellow-100/10">
-                  <div className="underline decoration-dotted">Xylophone</div>
-                  <div>500 Points</div>
-                </div>
+                <Button
+                  variant={"ghost"}
+                  onClick={() =>
+                    handlePurchase(
+                      shopSettings.instrument.find(
+                        (instrument) => instrument.name === "flute",
+                      ),
+                    )
+                  }
+                  className={clsx(
+                    "flex flex-row justify-between gap-8 rounded-xl p-2 underline decoration-dotted transition-all",
+                    shopSettings.instrument.find(
+                      (instrument) => instrument.name === "flute",
+                    )?.purchased === true
+                      ? "bg-green-800"
+                      : "hover:bg-yellow-100/10",
+                  )}
+                >
+                  <div className="underline decoration-dotted">Flute</div>
+                  <div>30 Points</div>
+                </Button>
               </DescriptionTooltip>
             </div>
           </div>
