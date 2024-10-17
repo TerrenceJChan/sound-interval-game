@@ -32,7 +32,7 @@ const menuLinks = [
 ];
 const TopNav = () => {
   return (
-    <div className="flex h-8 w-full items-center justify-between lg:h-16">
+    <div className="mb-8 flex h-8 w-full items-center justify-between lg:mb-0 lg:h-16">
       {/* Desktop View */}
       <PointsDisplay className="hidden p-8 lg:block" />
       <NavigationMenu className="hidden lg:flex">
