@@ -110,13 +110,22 @@ export const sounds = [
     reference: 11,
   },
   {
+    note: "gs4",
+    sound: {
+      clarinet: `${basePath}/sounds/clarinet/clarinet-gs4.mp3`,
+      saxophone: `${basePath}/sounds/saxophone/saxophone-gs4.mp3`,
+      violin: `${basePath}/sounds/violin/violin-gs4.mp3`,
+    },
+    reference: 12,
+  },
+  {
     note: "a4",
     sound: {
       clarinet: `${basePath}/sounds/clarinet/clarinet-a4.mp3`,
       saxophone: `${basePath}/sounds/saxophone/saxophone-a4.mp3`,
       violin: `${basePath}/sounds/violin/violin-a4.mp3`,
     },
-    reference: 12,
+    reference: 13,
   },
   {
     note: "as4",
@@ -125,7 +134,7 @@ export const sounds = [
       saxophone: `${basePath}/sounds/saxophone/saxophone-as4.mp3`,
       violin: `${basePath}/sounds/violin/violin-as4.mp3`,
     },
-    reference: 13,
+    reference: 14,
   },
   {
     note: "b4",
@@ -134,7 +143,7 @@ export const sounds = [
       saxophone: `${basePath}/sounds/saxophone/saxophone-b4.mp3`,
       violin: `${basePath}/sounds/violin/violin-b4.mp3`,
     },
-    reference: 14,
+    reference: 15,
   },
   {
     note: "c5",
@@ -143,7 +152,7 @@ export const sounds = [
       saxophone: `${basePath}/sounds/saxophone/saxophone-c5.mp3`,
       violin: `${basePath}/sounds/violin/violin-c5.mp3`,
     },
-    reference: 15,
+    reference: 16,
   },
   {
     note: "cs5",
@@ -152,7 +161,7 @@ export const sounds = [
       saxophone: `${basePath}/sounds/saxophone/saxophone-cs5.mp3`,
       violin: `${basePath}/sounds/violin/violin-cs5.mp3`,
     },
-    reference: 16,
+    reference: 17,
   },
   {
     note: "d5",
@@ -161,7 +170,7 @@ export const sounds = [
       saxophone: `${basePath}/sounds/saxophone/saxophone-d5.mp3`,
       violin: `${basePath}/sounds/violin/violin-d5.mp3`,
     },
-    reference: 17,
+    reference: 18,
   },
   {
     note: "ds5",
@@ -170,6 +179,6 @@ export const sounds = [
       saxophone: `${basePath}/sounds/saxophone/saxophone-ds5.mp3`,
       violin: `${basePath}/sounds/violin/violin-ds5.mp3`,
     },
-    reference: 18,
+    reference: 19,
   },
 ];

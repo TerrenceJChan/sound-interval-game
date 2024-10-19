@@ -1,1 +1,1 @@
-export type Instrument = "violin" | "xylophone" | "flute";
+export type Instrument = "violin" | "saxophone" | "clarinet";
