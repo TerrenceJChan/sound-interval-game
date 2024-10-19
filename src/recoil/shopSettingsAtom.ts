@@ -28,12 +28,12 @@ export const shopSettingsState = atom({
     instrument: [
       { name: "violin", price: 0, purchased: true },
       {
-        name: "xylophone",
+        name: "saxophone",
         price: 30,
         purchased: false,
       },
       {
-        name: "flute",
+        name: "clarinet",
         price: 30,
         purchased: false,
       },

@@ -5,14 +5,11 @@ import { Button } from "@/components/ui/button";
 import { pointsState } from "@/recoil/pointsAtom";
 import { shopSettingsState } from "@/recoil/shopSettingsAtom";
 import clsx from "clsx";
-import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 
 const ShopPage = () => {
   const [points, setPoints] = useRecoilState(pointsState);
   const [shopSettings, setShopSettings] = useRecoilState(shopSettingsState);
-
-  useEffect(() => {}, [points]);
 
   const handlePurchase = (
     item:
@@ -26,39 +23,31 @@ const ShopPage = () => {
     if (item === undefined) {
       return;
     }
-    const updateShop = () => {
-      if (!item.purchased && points >= item.price) {
-        setShopSettings({
-          ...shopSettings,
-          difficulty: shopSettings.difficulty.map((difficulty) => {
-            if (difficulty.name === item.name) {
-              return {
-                ...difficulty,
-                purchased: true,
-              };
-            }
-            return difficulty;
-          }),
-          instrument: shopSettings.instrument.map((instrument) => {
-            if (instrument.name === item.name) {
-              return {
-                ...instrument,
-                purchased: true,
-              };
-            }
-            return instrument;
-          }),
-        });
-        setPoints(points - item.price);
-      }
-    };
-    const updateStorage = () => {
-      localStorage["shopSettings"] = JSON.stringify(shopSettings);
-      localStorage["points"] = String(points);
-    };
 
-    updateShop();
-    updateStorage();
+    if (!item.purchased && points >= item.price) {
+      setShopSettings({
+        ...shopSettings,
+        difficulty: shopSettings.difficulty.map((difficulty) => {
+          if (difficulty.name === item.name) {
+            return {
+              ...difficulty,
+              purchased: true,
+            };
+          }
+          return difficulty;
+        }),
+        instrument: shopSettings.instrument.map((instrument) => {
+          if (instrument.name === item.name) {
+            return {
+              ...instrument,
+              purchased: true,
+            };
+          }
+          return instrument;
+        }),
+      });
+      setPoints(points - item.price);
+    }
   };
 
   return (
@@ -113,7 +102,7 @@ const ShopPage = () => {
                       Standard training that will expose additional intervals.
                     </p>
                     <p className="font-medium">
-                      Allows intervals up to and including major sixths (10
+                      Allows intervals up to and including major sixths (9
                       semitones).
                     </p>
                   </div>
@@ -150,7 +139,7 @@ const ShopPage = () => {
                       Advanced training that will expose all standard intervals.
                     </p>
                     <p className="font-medium">
-                      Allows intervals up to and including perfect eighths (13
+                      Allows intervals up to and including perfect eighths (12
                       semitones).
                     </p>
                   </div>
@@ -193,7 +182,7 @@ const ShopPage = () => {
                       interval testing.
                     </p>
                     <p className="font-medium">
-                      Unlocks the xylophone during game setup.
+                      Unlocks the saxophone during game setup.
                     </p>
                   </div>
                 }
@@ -203,20 +192,20 @@ const ShopPage = () => {
                   onClick={() =>
                     handlePurchase(
                       shopSettings.instrument.find(
-                        (instrument) => instrument.name === "xylophone",
+                        (instrument) => instrument.name === "saxophone",
                       ),
                     )
                   }
                   className={clsx(
                     "flex flex-row justify-between gap-8 rounded-xl p-2 underline decoration-dotted transition-all",
                     shopSettings.instrument.find(
-                      (instrument) => instrument.name === "xylophone",
+                      (instrument) => instrument.name === "saxophone",
                     )?.purchased === true
                       ? "bg-green-800"
                       : "hover:bg-yellow-100/10",
                   )}
                 >
-                  <div className="underline decoration-dotted">Xylophone</div>
+                  <div className="underline decoration-dotted">Saxophone</div>
                   <div>30 Points</div>
                 </Button>
               </DescriptionTooltip>
@@ -228,7 +217,7 @@ const ShopPage = () => {
                       interval testing.
                     </p>
                     <p className="font-medium">
-                      Unlocks the flute during game setup.
+                      Unlocks the clarinet during game setup.
                     </p>
                   </div>
                 }
@@ -238,20 +227,20 @@ const ShopPage = () => {
                   onClick={() =>
                     handlePurchase(
                       shopSettings.instrument.find(
-                        (instrument) => instrument.name === "flute",
+                        (instrument) => instrument.name === "clarinet",
                       ),
                     )
                   }
                   className={clsx(
                     "flex flex-row justify-between gap-8 rounded-xl p-2 underline decoration-dotted transition-all",
                     shopSettings.instrument.find(
-                      (instrument) => instrument.name === "flute",
+                      (instrument) => instrument.name === "clarinet",
                     )?.purchased === true
                       ? "bg-green-800"
                       : "hover:bg-yellow-100/10",
                   )}
                 >
-                  <div className="underline decoration-dotted">Flute</div>
+                  <div className="underline decoration-dotted">Clarinet</div>
                   <div>30 Points</div>
                 </Button>
               </DescriptionTooltip>

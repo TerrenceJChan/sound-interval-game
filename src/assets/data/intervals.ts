@@ -33,26 +33,22 @@ export const intervals = [
   },
   {
     difference: 8,
-    name: "Augmented 5th",
+    name: "Augmented 5th / Minor 6th",
   },
   {
     difference: 9,
-    name: "Minor 6th",
-  },
-  {
-    difference: 10,
     name: "Major 6th",
   },
   {
-    difference: 11,
+    difference: 10,
     name: "Minor 7th",
   },
   {
-    difference: 12,
+    difference: 11,
     name: "Major 7th",
   },
   {
-    difference: 13,
+    difference: 12,
     name: "Perfect 8th",
   },
 ];
